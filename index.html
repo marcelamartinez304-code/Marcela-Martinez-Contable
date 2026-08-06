@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcela Martínez Ávila | Contadora Pública</title>
+<style>
+  :root{
+    --azul-900:#12263f;
+    --azul-700:#1d3f66;
+    --azul-500:#3a6ea5;
+    --gris-100:#f4f6f8;
+    --gris-300:#dfe4ea;
+    --gris-600:#5b6775;
+    --blanco:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(160deg,var(--gris-100) 0%,#e7ecf1 100%);
+    color:var(--azul-900);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px 16px;
+    line-height:1.6;
+  }
+  .tarjeta{
+    background:var(--blanco);
+    max-width:760px;
+    width:100%;
+    border-radius:14px;
+    box-shadow:0 10px 30px rgba(18,38,63,.12);
+    overflow:hidden;
+    border:1px solid var(--gris-300);
+  }
+  header{
+    background:var(--azul-900);
+    color:var(--blanco);
+    padding:36px 32px 28px;
+    text-align:center;
+  }
+  .inicial{
+    width:74px;height:74px;
+    margin:0 auto 16px;
+    border-radius:50%;
+    background:var(--azul-500);
+    color:var(--blanco);
+    font-size:1.7rem;
+    font-weight:600;
+    letter-spacing:1px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  header h1{font-size:1.75rem;font-weight:600;letter-spacing:.5px;}
+  header p.cargo{
+    color:#a9c2dd;
+    font-size:.95rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-top:6px;
+  }
+  .contenido{padding:32px;}
+  .presentacion{
+    color:var(--gris-600);
+    font-size:1.02rem;
+    text-align:center;
+    max-width:600px;
+    margin:0 auto 32px;
+  }
+  h2{
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:var(--azul-500);
+    margin-bottom:16px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--gris-300);
+  }
+  .servicios{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .servicios li{
+    background:var(--gris-100);
+    border-left:3px solid var(--azul-500);
+    border-radius:6px;
+    padding:14px 16px;
+    font-size:.95rem;
+  }
+  .servicios li strong{display:block;color:var(--azul-700);font-weight:600;}
+  .servicios li span{color:var(--gris-600);font-size:.86rem;}
+  .contacto{margin-top:32px;}
+  .contacto ul{list-style:none;display:flex;flex-wrap:wrap;gap:12px 28px;}
+  .contacto li{font-size:.95rem;color:var(--azul-700);}
+  .contacto a{color:var(--azul-700);text-decoration:none;border-bottom:1px dotted var(--azul-500);}
+  .contacto a:hover{color:var(--azul-500);}
+  footer{
+    background:var(--gris-100);
+    border-top:1px solid var(--gris-300);
+    text-align:center;
+    padding:16px;
+    font-size:.82rem;
+    color:var(--gris-600);
+  }
+  @media (max-width:600px){
+    header{padding:28px 20px 22px;}
+    header h1{font-size:1.4rem;}
+    .contenido{padding:24px 20px;}
+    .servicios{grid-template-columns:1fr;}
+    .contacto ul{flex-direction:column;gap:10px;}
+  }
+</style>
+</head>
+<body>
+  <main class="tarjeta">
+    <header>
+      <div class="inicial">MM</div>
+      <h1>Marcela Martínez Ávila</h1>
+      <p class="cargo">Contadora Pública</p>
+    </header>
+
+    <div class="contenido">
+      <p class="presentacion">
+        Contadora Pública especialista en Legislación Tributaria, con experiencia
+        en cumplimiento fiscal y reportes bajo NIIF. Acompaño a PYMES colombianas
+        en el orden de su contabilidad y en el cumplimiento oportuno de sus
+        obligaciones nacionales y territoriales.
+      </p>
+
+      <section>
+        <h2>Servicios</h2>
+        <ul class="servicios">
+          <li>📊 <strong>Contabilidad para PYMES</strong>
+            <span>Registro, conciliaciones y cierres bajo NIIF.</span></li>
+          <li>🧾 <strong>Declaraciones tributarias</strong>
+            <span>Impuestos nacionales, municipales e información exógena.</span></li>
+          <li>📌 <strong>Planeación tributaria</strong>
+            <span>Análisis de carga fiscal y prevención de contingencias.</span></li>
+          <li>📈 <strong>Informes a gerencia</strong>
+            <span>Estados financieros e indicadores para la toma de decisiones.</span></li>
+        </ul>
+      </section>
+
+      <section class="contacto">
+        <h2>Contacto</h2>
+        <ul>
+          <li>✉️ <a href="mailto:contacto@mmartinez-contable.co">contacto@mmartinez-contable.co</a></li>
+          <li>📍 Medellín, Antioquia — Colombia</li>
+          <li>🕓 Atención virtual a todo el país</li>
+        </ul>
+      </section>
+    </div>
+
+    <footer>© 2026 Marcela Martínez Ávila — Contadora Pública</footer>
+  </main>
+</body>
+</html>
