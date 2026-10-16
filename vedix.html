@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vedix | Gestión de información contable y financiera para pymes</title>
+<meta name="description" content="Vedix es un sistema de gestión de información contable y financiera para pequeñas y medianas empresas de Colombia. Solicite una demostración.">
+<meta name="robots" content="noindex"><!-- PROVISIONAL: quitar al publicar -->
+<style>
+/* ============================================================
+   TOKENS DE DISEÑO (identidad PROVISIONAL, pendiente de aprobación)
+   Cambie aquí colores, tipografía, espaciado, bordes y sombras.
+   ============================================================ */
+:root{
+  --c-marino:#10243A;
+  --c-esmeralda:#0E8F75;
+  --c-esmeralda-osc:#0A6F5B;   /* variante para texto/hover con mayor contraste */
+  --c-blanco:#FFFFFF;
+  --c-fondo-suave:#F4F7FA;
+  --c-texto-sec:#526173;
+  --c-borde:#DCE3EA;
+  --c-error:#B3261E;
+
+  --f-base:"Inter","Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  --t-xs:.8125rem; --t-sm:.9375rem; --t-md:1.0625rem; --t-lg:1.25rem;
+  --t-xl:clamp(1.6rem,3vw,2.2rem); --t-2xl:clamp(2.1rem,5vw,3.4rem);
+
+  --e-1:.5rem; --e-2:1rem; --e-3:1.5rem; --e-4:2.5rem; --e-5:5rem;
+  --r-sm:8px; --r-md:14px; --r-pill:999px;
+  --sombra-sm:0 1px 2px rgba(16,36,58,.06),0 1px 3px rgba(16,36,58,.08);
+  --sombra-md:0 10px 30px rgba(16,36,58,.10);
+  --ancho:1120px;
+}
+
+/* ---------- Base ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--f-base);color:var(--c-marino);background:var(--c-blanco);line-height:1.6;font-size:var(--t-md);-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:100%;max-width:var(--ancho);margin:0 auto;padding:0 var(--e-3)}
+section{padding:var(--e-5) 0}
+h1,h2,h3{line-height:1.15;letter-spacing:-.015em}
+h2{font-size:var(--t-xl);margin-bottom:var(--e-2)}
+h3{font-size:var(--t-lg);margin-bottom:var(--e-1)}
+.lead{color:var(--c-texto-sec);max-width:62ch}
+.eyebrow{display:inline-block;font-size:var(--t-xs);font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--c-esmeralda-osc);margin-bottom:var(--e-1)}
+.skip{position:absolute;left:-999px;top:0;background:var(--c-marino);color:#fff;padding:.6rem 1rem;z-index:100}
+.skip:focus{left:var(--e-2);top:var(--e-1)}
+:focus-visible{outline:3px solid var(--c-esmeralda);outline-offset:3px;border-radius:4px}
+
+/* ---------- Botones ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.4rem;border-radius:var(--r-pill);font:inherit;font-size:var(--t-sm);font-weight:600;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+.btn-primario{background:var(--c-esmeralda-osc);color:#fff}
+.btn-primario:hover{background:#085a4a;transform:translateY(-1px);box-shadow:var(--sombra-md)}
+.btn-sec{background:transparent;color:var(--c-marino);border-color:var(--c-marino)}
+.btn-sec:hover{background:var(--c-marino);color:#fff}
+.oscuro .btn-sec{color:#fff;border-color:rgba(255,255,255,.6)}
+.oscuro .btn-sec:hover{background:#fff;color:var(--c-marino)}
+
+/* ---------- Encabezado ---------- */
+header.sitio{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid var(--c-borde);backdrop-filter:blur(8px)}
+.barra{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;font-weight:800;font-size:1.35rem;letter-spacing:-.02em}
+.logo-marca{width:30px;height:30px}
+.logo small{font-size:.65rem;font-weight:600;color:var(--c-texto-sec);letter-spacing:.04em;border:1px solid var(--c-borde);border-radius:var(--r-pill);padding:.1rem .45rem}
+nav.principal ul{display:flex;align-items:center;gap:1.6rem;list-style:none}
+nav.principal a{text-decoration:none;font-size:var(--t-sm);font-weight:500;color:var(--c-texto-sec)}
+nav.principal a:hover{color:var(--c-marino)}
+nav.principal a.btn-primario,nav.principal a.btn-primario:hover{color:#fff}
+.menu-btn{display:none;background:none;border:1px solid var(--c-borde);border-radius:var(--r-sm);padding:.5rem .7rem;font:inherit;font-weight:600;color:var(--c-marino);cursor:pointer}
+
+/* ---------- Hero ---------- */
+.oscuro{background:var(--c-marino);color:#fff}
+.hero{padding:var(--e-5) 0}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:var(--e-4);align-items:center}
+.hero h1{font-size:var(--t-2xl);margin-bottom:var(--e-2)}
+.hero .lead{color:#C5D1DE;margin-bottom:var(--e-3)}
+.hero .eyebrow{color:#5FD3B8}
+.acciones{display:flex;flex-wrap:wrap;gap:var(--e-2)}
+.nota-ilus{font-size:var(--t-xs);color:var(--c-texto-sec);margin-top:var(--e-2)}
+.oscuro .nota-ilus{color:#9FB0C2}
+
+/* ---------- Panel demostrativo (conceptual) ---------- */
+.panel{background:#fff;color:var(--c-marino);border-radius:var(--r-md);box-shadow:var(--sombra-md);border:1px solid var(--c-borde);overflow:hidden}
+.panel-top{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:var(--c-fondo-suave);border-bottom:1px solid var(--c-borde);font-size:var(--t-xs);color:var(--c-texto-sec)}
+.panel-top b{color:var(--c-marino)}
+.etiqueta{background:#FFF4D6;color:#6B4E00;border:1px solid #E8D28A;border-radius:var(--r-pill);padding:.1rem .55rem;font-weight:700;font-size:.7rem}
+.panel-body{padding:1rem}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1rem}
+.kpi{background:var(--c-fondo-suave);border-radius:var(--r-sm);padding:.7rem}
+.kpi span{display:block;font-size:var(--t-xs);color:var(--c-texto-sec)}
+.kpi strong{font-size:1.1rem}
+.grafico{border:1px solid var(--c-borde);border-radius:var(--r-sm);padding:.8rem;margin-bottom:1rem}
+.grafico p{font-size:var(--t-xs);color:var(--c-texto-sec);margin-bottom:.4rem}
+table.demo{width:100%;border-collapse:collapse;font-size:var(--t-xs)}
+table.demo th,table.demo td{padding:.45rem .5rem;text-align:left;border-bottom:1px solid var(--c-borde)}
+table.demo th{color:var(--c-texto-sec);font-weight:600}
+table.demo td:last-child,table.demo th:last-child{text-align:right}
+.leyenda{display:flex;gap:1rem;font-size:var(--t-xs);color:var(--c-texto-sec);margin-top:.3rem}
+.leyenda i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:.3rem}
+
+/* ---------- Tarjetas ---------- */
+.fondo-suave{background:var(--c-fondo-suave)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--e-3);margin-top:var(--e-4)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e-3);margin-top:var(--e-4)}
+.tarjeta{background:#fff;border:1px solid var(--c-borde);border-radius:var(--r-md);padding:var(--e-3);box-shadow:var(--sombra-sm);transition:transform .2s,box-shadow .2s,border-color .2s}
+.tarjeta:hover{transform:translateY(-3px);box-shadow:var(--sombra-md);border-color:var(--c-esmeralda)}
+.tarjeta p{color:var(--c-texto-sec);font-size:var(--t-sm)}
+.icono{width:46px;height:46px;border-radius:12px;background:#E3F4F0;display:grid;place-items:center;margin-bottom:var(--e-2)}
+.icono svg{width:24px;height:24px;stroke:var(--c-esmeralda-osc);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pendiente{display:inline-block;margin-top:var(--e-2);font-size:var(--t-xs);color:var(--c-texto-sec);border:1px dashed var(--c-texto-sec);border-radius:var(--r-sm);padding:.2rem .55rem}
+.pasos{counter-reset:p;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e-3);margin-top:var(--e-4)}
+.pasos li{counter-increment:p;background:#fff;border:1px solid var(--c-borde);border-radius:var(--r-md);padding:var(--e-3)}
+.pasos li::before{content:counter(p);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--c-marino);color:#fff;font-weight:700;margin-bottom:var(--e-2)}
+.pasos p{color:var(--c-texto-sec);font-size:var(--t-sm)}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:780px;margin-top:var(--e-4)}
+.faq details{border:1px solid var(--c-borde);border-radius:var(--r-sm);margin-bottom:.7rem;background:#fff}
+.faq summary{cursor:pointer;list-style:none;padding:1rem 3rem 1rem 1.1rem;font-weight:600;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:1.1rem;top:50%;transform:translateY(-50%);font-size:1.4rem;color:var(--c-esmeralda-osc);transition:transform .2s}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq details p{padding:0 1.1rem 1.1rem;color:var(--c-texto-sec);font-size:var(--t-sm)}
+
+/* ---------- Contacto / formulario ---------- */
+.contacto-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--e-4);align-items:start}
+.datos-contacto{list-style:none;margin-top:var(--e-3);display:grid;gap:var(--e-2)}
+.datos-contacto a{color:#fff;font-weight:600}
+.datos-contacto span{display:block;font-size:var(--t-xs);color:#9FB0C2}
+form.form{background:#fff;color:var(--c-marino);border-radius:var(--r-md);padding:var(--e-3);box-shadow:var(--sombra-md)}
+.campo{margin-bottom:var(--e-2)}
+.campo label{display:block;font-size:var(--t-sm);font-weight:600;margin-bottom:.3rem}
+.campo .op{font-weight:400;color:var(--c-texto-sec)}
+.campo input,.campo textarea{width:100%;font:inherit;font-size:var(--t-sm);padding:.7rem .8rem;border:1.5px solid #B8C3CF;border-radius:var(--r-sm);color:var(--c-marino);background:#fff}
+.campo textarea{min-height:90px;resize:vertical}
+.campo input:focus,.campo textarea:focus{outline:3px solid rgba(14,143,117,.35);border-color:var(--c-esmeralda)}
+.campo [aria-invalid="true"]{border-color:var(--c-error)}
+.error{display:none;color:var(--c-error);font-size:var(--t-xs);margin-top:.3rem;font-weight:600}
+.error.visible{display:block}
+.aviso-form{font-size:var(--t-xs);color:var(--c-texto-sec);margin-bottom:var(--e-2)}
+.estado{margin-top:var(--e-2);padding:.8rem 1rem;border-radius:var(--r-sm);font-size:var(--t-sm);display:none;background:var(--c-fondo-suave);border:1px solid var(--c-borde)}
+.estado.visible{display:block}
+.chk{display:flex;gap:.6rem;align-items:flex-start;font-size:var(--t-xs);color:var(--c-texto-sec);margin-bottom:var(--e-2)}
+.chk input{width:auto;margin-top:.2rem}
+
+/* ---------- Pie ---------- */
+footer.sitio{background:#0B1A2B;color:#C5D1DE;padding:var(--e-4) 0;font-size:var(--t-sm)}
+footer.sitio .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--e-3)}
+footer.sitio h2{font-size:var(--t-sm);color:#fff;margin-bottom:.5rem;letter-spacing:0}
+footer.sitio a{color:#C5D1DE}
+footer.sitio ul{list-style:none;display:grid;gap:.3rem}
+.legal{margin-top:var(--e-3);padding-top:var(--e-2);border-top:1px solid rgba(255,255,255,.12);font-size:var(--t-xs);color:#8EA0B3}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .hero-grid,.contacto-grid,.grid-3,.pasos,footer.sitio .cols{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+  .menu-btn{display:block}
+  nav.principal{position:absolute;top:68px;left:0;right:0;background:#fff;border-bottom:1px solid var(--c-borde);display:none;padding:var(--e-2) var(--e-3)}
+  nav.principal.abierto{display:block}
+  nav.principal ul{flex-direction:column;align-items:flex-start;gap:1rem}
+  section{padding:3.2rem 0}
+}
+@media (max-width:480px){ .kpis{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ===================== A. ENCABEZADO ===================== -->
+<header class="sitio">
+  <div class="wrap barra">
+    <a class="logo" href="#inicio" aria-label="Vedix, ir al inicio">
+      <svg class="logo-marca" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#10243A"/><path d="M8 10l8 13 8-13" fill="none" stroke="#2FD1AE" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Vedix <small>identidad provisional</small>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-principal">Menú</button>
+    <nav class="principal" id="nav-principal" aria-label="Principal">
+      <ul>
+        <li><a href="#vedix">Vedix</a></li>
+        <li><a href="#capacidades">Portafolio</a></li>
+        <li><a href="#vista">Vista conceptual</a></li>
+        <li><a href="#valor">Valor para pymes</a></li>
+        <li><a href="#faq">Preguntas</a></li>
+        <li><a class="btn btn-primario" href="#contacto">Solicitar demostración</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ===================== B. HERO ===================== -->
+<section class="oscuro hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Para pymes de Colombia</span>
+      <h1>Su información contable y financiera, organizada en un solo lugar.</h1>
+      <p class="lead">Vedix es un sistema de gestión de información contable y financiera pensado para pequeñas y medianas empresas colombianas, con énfasis en gestión financiera y reportes.</p>
+      <div class="acciones">
+        <a class="btn btn-primario" href="#contacto">Solicitar una demostración</a>
+        <a class="btn btn-sec" href="#vedix">Conocer la solución</a>
+      </div>
+    </div>
+    <div>
+      <div class="panel" role="img" aria-label="Ilustración conceptual de un panel financiero con datos ficticios">
+        <div class="panel-top"><b>Panel financiero</b><span class="etiqueta">ILUSTRATIVO</span></div>
+        <div class="panel-body">
+          <div class="kpis">
+            <div class="kpi"><span>Ingresos (demo)</span><strong>$ 000.000</strong></div>
+            <div class="kpi"><span>Gastos (demo)</span><strong>$ 000.000</strong></div>
+            <div class="kpi"><span>Resultado (demo)</span><strong>$ 000.000</strong></div>
+          </div>
+          <svg viewBox="0 0 300 90" aria-hidden="true">
+            <g fill="#DCE3EA"><rect x="10" y="50" width="22" height="35"/><rect x="60" y="40" width="22" height="45"/><rect x="110" y="55" width="22" height="30"/><rect x="160" y="30" width="22" height="55"/><rect x="210" y="45" width="22" height="40"/><rect x="260" y="20" width="22" height="65"/></g>
+            <polyline points="21,45 71,32 121,48 171,22 221,36 271,12" fill="none" stroke="#0E8F75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <p class="nota-ilus">Visualización conceptual con datos ilustrativos; las funcionalidades finales están sujetas a validación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== C. PRESENTACIÓN ===================== -->
+<section id="vedix">
+  <div class="wrap">
+    <span class="eyebrow">Qué es Vedix</span>
+    <h2>Un sistema de gestión de información contable y financiera</h2>
+    <p class="lead">Vedix se dirige a pequeñas y medianas empresas de Colombia. Contar con información contable y financiera ordenada es una base para que la administración consulte, revise y analice la situación de su negocio con mayor claridad.</p>
+    <p class="lead" style="margin-top:1rem">El alcance detallado de funciones y módulos se comunica en la demostración con el equipo comercial.</p>
+    <span class="pendiente">Pendiente de confirmar: descripción oficial del producto y su alcance.</span>
+  </div>
+</section>
+
+<!-- ===================== D. PORTAFOLIO ===================== -->
+<section class="fondo-suave" id="capacidades">
+  <div class="wrap">
+    <span class="eyebrow">Portafolio de capacidades</span>
+    <h2>Dos áreas de enfoque</h2>
+    <div class="grid-2">
+      <article class="tarjeta">
+        <div class="icono"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-5 4 4 8-9"/><path d="M15 7h5v5"/></svg></div>
+        <h3>Gestión financiera</h3>
+        <p>Vedix se enfoca en la información financiera de la empresa, para apoyar el seguimiento de su situación económica.</p>
+        <span class="pendiente">Pendiente: detalle de funciones</span>
+      </article>
+      <article class="tarjeta">
+        <div class="icono"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg></div>
+        <h3>Reportes</h3>
+        <p>La información organizada facilita el seguimiento y el análisis financiero. Los tipos de reporte disponibles se presentarán en la demostración.</p>
+        <span class="pendiente">Pendiente: detalle de reportes</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== E. VISTA CONCEPTUAL ===================== -->
+<section id="vista">
+  <div class="wrap">
+    <span class="eyebrow">Vista conceptual</span>
+    <h2>Imagine su información financiera en contexto</h2>
+    <p class="lead">Composición visual para ilustrar un posible entorno de uso. No es una captura del software ni representa funciones confirmadas.</p>
+    <div class="panel" style="margin-top:2.5rem;max-width:860px">
+      <div class="panel-top"><b>Resumen mensual</b><span class="etiqueta">DATOS FICTICIOS</span></div>
+      <div class="panel-body">
+        <div class="grafico">
+          <p>Ingresos y gastos por mes (valores demostrativos)</p>
+          <svg viewBox="0 0 520 170" role="img" aria-label="Gráfico de barras ilustrativo con datos ficticios de ingresos y gastos de seis meses">
+            <g stroke="#DCE3EA"><line x1="30" y1="20" x2="510" y2="20"/><line x1="30" y1="65" x2="510" y2="65"/><line x1="30" y1="110" x2="510" y2="110"/><line x1="30" y1="150" x2="510" y2="150"/></g>
+            <g fill="#10243A"><rect x="50" y="70" width="22" height="80"/><rect x="130" y="55" width="22" height="95"/><rect x="210" y="75" width="22" height="75"/><rect x="290" y="40" width="22" height="110"/><rect x="370" y="60" width="22" height="90"/><rect x="450" y="30" width="22" height="120"/></g>
+            <g fill="#0E8F75"><rect x="76" y="95" width="22" height="55"/><rect x="156" y="85" width="22" height="65"/><rect x="236" y="100" width="22" height="50"/><rect x="316" y="75" width="22" height="75"/><rect x="396" y="80" width="22" height="70"/><rect x="476" y="70" width="22" height="80"/></g>
+            <g font-size="11" fill="#526173" text-anchor="middle"><text x="74" y="165">Mes 1</text><text x="154" y="165">Mes 2</text><text x="234" y="165">Mes 3</text><text x="314" y="165">Mes 4</text><text x="394" y="165">Mes 5</text><text x="474" y="165">Mes 6</text></g>
+          </svg>
+          <div class="leyenda"><span><i style="background:#10243A"></i>Ingresos</span><span><i style="background:#0E8F75"></i>Gastos</span></div>
+        </div>
+        <table class="demo">
+          <caption style="text-align:left;font-size:.8125rem;color:#526173;padding-bottom:.4rem">Ejemplo de tabla (cifras ficticias)</caption>
+          <thead><tr><th scope="col">Concepto</th><th scope="col">Estado</th><th scope="col">Valor demo</th></tr></thead>
+          <tbody>
+            <tr><td>Concepto de ejemplo A</td><td>Registrado</td><td>$ 000</td></tr>
+            <tr><td>Concepto de ejemplo B</td><td>En revisión</td><td>$ 000</td></tr>
+            <tr><td>Concepto de ejemplo C</td><td>Registrado</td><td>$ 000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="nota-ilus">Visualización conceptual con datos ilustrativos; las funcionalidades finales están sujetas a validación.</p>
+  </div>
+</section>
+
+<!-- ===================== F. VALOR PARA PYMES ===================== -->
+<section class="fondo-suave" id="valor">
+  <div class="wrap">
+    <span class="eyebrow">Valor para las pymes</span>
+    <h2>Por qué importa la información ordenada</h2>
+    <p class="lead">Este apartado describe el valor general de una buena gestión de la información, no resultados específicos de Vedix.</p>
+    <div class="grid-3">
+      <article class="tarjeta"><div class="icono"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Claridad</h3><p>Datos organizados permiten entender mejor la situación de la empresa.</p></article>
+      <article class="tarjeta"><div class="icono"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h3>Seguimiento</h3><p>Revisar la información de forma periódica ayuda a observar su evolución.</p></article>
+      <article class="tarjeta"><div class="icono"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></svg></div><h3>Apoyo al análisis</h3><p>Información confiable es la base para analizar y apoyar decisiones de la administración.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== G. CÓMO CONOCER VEDIX ===================== -->
+<section id="como">
+  <div class="wrap">
+    <span class="eyebrow">Cómo conocer Vedix</span>
+    <h2>El siguiente paso</h2>
+    <ol class="pasos">
+      <li><h3>Solicite una demostración</h3><p>Complete el formulario o escriba directamente por los datos de contacto.</p></li>
+      <li><h3>Recibimos su solicitud</h3><p>Su mensaje llega al equipo de Vedix a través de su programa de correo.</p></li>
+      <li><h3>Coordinamos el contacto</h3><p>Acordamos la forma y el momento de la demostración.</p></li>
+    </ol>
+    <span class="pendiente">Pendiente de confirmar: proceso comercial definitivo.</span>
+  </div>
+</section>
+
+<!-- ===================== H. FAQ ===================== -->
+<section class="fondo-suave" id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Preguntas frecuentes</span>
+    <h2>Lo que puede preguntarse</h2>
+    <div class="faq">
+      <details><summary>¿Qué es Vedix?</summary><p>Es un sistema de gestión de información contable y financiera.</p></details>
+      <details><summary>¿A qué tipo de empresas se dirige?</summary><p>A pequeñas y medianas empresas de Colombia.</p></details>
+      <details><summary>¿Qué áreas aborda?</summary><p>Su enfoque es la gestión financiera y los reportes.</p></details>
+      <details><summary>¿Cómo puedo solicitar una demostración?</summary><p>Usando el formulario de contacto de esta página o escribiendo al correo o teléfono indicados.</p></details>
+      <details><summary>¿Qué funcionalidades incluye?</summary><p>Información en proceso de confirmación. El equipo comercial le detallará el alcance en la demostración.</p></details>
+      <details><summary>¿Cuáles son sus precios?</summary><p>Información pendiente de confirmación. Consulte al equipo comercial.</p></details>
+      <details><summary>¿Cómo funciona la implementación?</summary><p>Información pendiente de confirmación. Consulte al equipo comercial.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== I. CTA FINAL + FORMULARIO ===================== -->
+<section class="oscuro" id="contacto">
+  <div class="wrap contacto-grid">
+    <div>
+      <span class="eyebrow" style="color:#5FD3B8">Contacto</span>
+      <h2>Conozca Vedix con el equipo comercial</h2>
+      <p class="lead" style="color:#C5D1DE">Cuéntenos brevemente quién es y le responderemos para coordinar una demostración. No necesita compartir información contable ni financiera.</p>
+      <ul class="datos-contacto">
+        <li><span>Correo</span><a href="mailto:marcelamartinez304@gmail.com">marcelamartinez304@gmail.com</a></li>
+        <li><span>Teléfono</span><a href="tel:+573217398117">321 739 8117</a></li>
+      </ul>
+    </div>
+
+    <form class="form" id="form-contacto" novalidate aria-describedby="aviso-form">
+      <p class="aviso-form" id="aviso-form">Los campos con * son obligatorios. Al enviar, se abrirá su programa de correo con el mensaje listo; la solicitud solo se envía cuando usted pulse «Enviar» allí.</p>
+
+      <div class="campo">
+        <label for="nombre">Nombre *</label>
+        <input id="nombre" name="nombre" type="text" autocomplete="name" required aria-describedby="e-nombre">
+        <p class="error" id="e-nombre">Escriba su nombre.</p>
+      </div>
+      <div class="campo">
+        <label for="correo">Correo electrónico empresarial *</label>
+        <input id="correo" name="correo" type="email" autocomplete="email" required aria-describedby="e-correo">
+        <p class="error" id="e-correo">Escriba un correo válido, por ejemplo nombre@empresa.co.</p>
+      </div>
+      <div class="campo">
+        <label for="empresa">Empresa *</label>
+        <input id="empresa" name="empresa" type="text" autocomplete="organization" required aria-describedby="e-empresa">
+        <p class="error" id="e-empresa">Escriba el nombre de su empresa.</p>
+      </div>
+      <div class="campo">
+        <label for="telefono">Teléfono <span class="op">(opcional)</span></label>
+        <input id="telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="e-telefono">
+        <p class="error" id="e-telefono">Escriba un teléfono de 7 a 15 dígitos.</p>
+      </div>
+      <div class="campo">
+        <label for="motivo">Motivo de contacto <span class="op">(opcional)</span></label>
+        <textarea id="motivo" name="motivo" maxlength="500"></textarea>
+      </div>
+      <label class="chk"><input type="checkbox" id="datos" required aria-describedby="e-datos"> <span>Autorizo el uso de estos datos para que me contacten sobre Vedix. *<br><em>Pendiente: texto legal y política de tratamiento de datos (Ley 1581 de 2012) por redactar y revisar.</em></span></label>
+      <p class="error" id="e-datos" style="margin-top:-.6rem;margin-bottom:1rem">Debe aceptar para continuar.</p>
+
+      <button class="btn btn-primario" type="submit">Preparar mi solicitud</button>
+      <div class="estado" id="estado" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ===================== J. PIE ===================== -->
+<footer class="sitio">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h2>Vedix</h2>
+        <p>Sistema de gestión de información contable y financiera para pymes de Colombia.</p>
+        <p style="margin-top:.5rem">Razón social y NIT: <em>pendientes</em>.</p>
+      </div>
+      <div>
+        <h2>Contacto</h2>
+        <ul>
+          <li><a href="mailto:marcelamartinez304@gmail.com">marcelamartinez304@gmail.com</a></li>
+          <li><a href="tel:+573217398117">321 739 8117</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Legal y redes</h2>
+        <ul>
+          <li>Política de tratamiento de datos: <em>pendiente</em></li>
+          <li>Términos y condiciones: <em>pendiente</em></li>
+          <li>Redes sociales: <em>pendientes</em></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">Versión provisional para revisión interna. Identidad visual, textos y funcionalidades sujetos a validación por la propietaria de Vedix. Las visualizaciones usan datos ficticios.</p>
+  </div>
+</footer>
+
+<script>
+/* ===== Configuración de contacto (editar aquí) ===== */
+const CONFIG = {
+  correoDestino: "marcelamartinez304@gmail.com",
+  // PENDIENTE: para recibir solicitudes sin depender del correo del visitante,
+  // conectar un servicio autorizado (p. ej. Formspree o CRM) y reemplazar el envío por mailto.
+};
+
+/* ===== Menú móvil ===== */
+const btn = document.getElementById("menu-btn");
+const nav = document.getElementById("nav-principal");
+btn.addEventListener("click", () => {
+  const abierto = nav.classList.toggle("abierto");
+  btn.setAttribute("aria-expanded", abierto);
+});
+nav.addEventListener("click", e => {
+  if (e.target.tagName === "A") { nav.classList.remove("abierto"); btn.setAttribute("aria-expanded", "false"); }
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && nav.classList.contains("abierto")) { nav.classList.remove("abierto"); btn.setAttribute("aria-expanded", "false"); btn.focus(); }
+});
+
+/* ===== Formulario: validación y preparación de correo ===== */
+const form = document.getElementById("form-contacto");
+const estado = document.getElementById("estado");
+
+function marcar(campo, errId, ok) {
+  const err = document.getElementById(errId);
+  err.classList.toggle("visible", !ok);
+  if (campo.type !== "checkbox") campo.setAttribute("aria-invalid", ok ? "false" : "true");
+  return ok;
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const f = form.elements;
+  const tel = f.telefono.value.replace(/[\s\-().+]/g, "");
+  const resultados = [
+    marcar(f.nombre,  "e-nombre",  f.nombre.value.trim().length >= 2),
+    marcar(f.correo,  "e-correo",  /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.correo.value.trim())),
+    marcar(f.empresa, "e-empresa", f.empresa.value.trim().length >= 2),
+    marcar(f.telefono,"e-telefono", tel === "" || /^\d{7,15}$/.test(tel)),
+    marcar(f.datos,   "e-datos",   f.datos.checked)
+  ];
+  estado.classList.add("visible");
+  if (resultados.includes(false)) {
+    estado.textContent = "Revise los campos marcados. La solicitud no ha sido preparada.";
+    const primero = form.querySelector('[aria-invalid="true"], #datos:invalid');
+    (primero || f.nombre).focus();
+    return;
+  }
+  const cuerpo = [
+    "Solicitud de demostración de Vedix",
+    "",
+    "Nombre: " + f.nombre.value.trim(),
+    "Correo: " + f.correo.value.trim(),
+    "Empresa: " + f.empresa.value.trim(),
+    "Teléfono: " + (f.telefono.value.trim() || "No indicado"),
+    "Motivo: " + (f.motivo.value.trim() || "No indicado")
+  ].join("\n");
+  const url = "mailto:" + CONFIG.correoDestino +
+    "?subject=" + encodeURIComponent("Solicitud de demostración Vedix") +
+    "&body=" + encodeURIComponent(cuerpo);
+  estado.textContent = "Se intentó abrir su programa de correo con el mensaje listo. Su solicitud NO se ha enviado hasta que pulse «Enviar» en su correo. Si no se abrió, escriba a " + CONFIG.correoDestino + " o llame al 321 739 8117.";
+  window.location.href = url;
+});
+</script>
+</body>
+</html>
