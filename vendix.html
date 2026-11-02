@@ -62,10 +62,11 @@ h3{font-size:var(--t-lg);margin-bottom:var(--e-1)}
 header.sitio{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid var(--c-borde);backdrop-filter:blur(8px)}
 .barra{display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;font-weight:800;font-size:1.35rem;letter-spacing:-.02em}
-.logo-marca{width:30px;height:30px}
-.logo small{font-size:.65rem;font-weight:600;color:var(--c-texto-sec);letter-spacing:.04em;border:1px solid var(--c-borde);border-radius:var(--r-pill);padding:.1rem .45rem}
+.logo-img{height:38px;width:auto}
+.logo small{font-size:.65rem;font-weight:600;color:var(--c-texto-sec);letter-spacing:.04em;border:1px solid var(--c-borde);border-radius:var(--r-pill);padding:.1rem .45rem;white-space:nowrap;margin-right:1rem}
+@media (max-width:1360px){.logo small{display:none}}
 nav.principal ul{display:flex;align-items:center;gap:1.6rem;list-style:none}
-nav.principal a{text-decoration:none;font-size:var(--t-sm);font-weight:500;color:var(--c-texto-sec)}
+nav.principal a{white-space:nowrap;text-decoration:none;font-size:var(--t-sm);font-weight:500;color:var(--c-texto-sec)}
 nav.principal a:hover{color:var(--c-marino)}
 nav.principal a.btn-primario,nav.principal a.btn-primario:hover{color:#fff}
 .menu-btn{display:none;background:none;border:1px solid var(--c-borde);border-radius:var(--r-sm);padding:.5rem .7rem;font:inherit;font-weight:600;color:var(--c-marino);cursor:pointer}
@@ -177,8 +178,25 @@ footer.sitio ul{list-style:none;display:grid;gap:.3rem}
 <header class="sitio">
   <div class="wrap barra">
     <a class="logo" href="#inicio" aria-label="Vendix, ir al inicio">
-      <svg class="logo-marca" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#10243A"/><path d="M8 10l8 13 8-13" fill="none" stroke="#2FD1AE" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Vendix <small>identidad provisional</small>
+      <svg class="logo-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 262 64" aria-hidden="true">
+  <g><path d="M14 4H40L56 20V54Q56 60 50 60H14Q8 60 8 54V10Q8 4 14 4Z" fill="#10243A"/>
+  <path d="M40 4V16Q40 20 44 20H56Z" fill="#FFFFFF" fill-opacity=".22"/>
+  <path d="M16 14H30M16 21H26" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+  <path d="M19 32L29 46L46 26" fill="none" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" stroke="#2FD1AE"/>
+  <path d="M19 32L29 46" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round"/></g>
+  <g transform="translate(86 17) scale(1.15)">
+  <g fill="none" stroke="#10243A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 10L9 30L18 10"/>
+    <path d="M26 20H44A9 9 0 1 0 41.36 26.36"/>
+    <path d="M52 30V10M52 20A9 9 0 0 1 70 20V30"/>
+    <path d="M96 20A9 9 0 1 0 78 20A9 9 0 1 0 96 20M96 0V30"/>
+    <path d="M109 10V30"/>
+    <path d="M122 10L138 30M138 10L122 30"/>
+  </g>
+  <circle cx="109" cy="1.5" r="3.4" fill="#2FD1AE"/>
+  </g>
+</svg>
+      <small>identidad provisional</small>
     </a>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-principal">Menú</button>
     <nav class="principal" id="nav-principal" aria-label="Principal">
