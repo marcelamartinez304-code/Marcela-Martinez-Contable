@@ -334,7 +334,7 @@ footer.sitio ul{list-style:none;display:grid;gap:.3rem}
     <h2>El siguiente paso</h2>
     <ol class="pasos">
       <li><h3>Solicite una demostración</h3><p>Complete el formulario o escriba directamente por los datos de contacto.</p></li>
-      <li><h3>Recibimos su solicitud</h3><p>Su mensaje llega al equipo de Vendix a través de su programa de correo.</p></li>
+      <li><h3>Recibimos su solicitud</h3><p id="paso-recepcion">Su mensaje llega al equipo de Vendix a través de su programa de correo.</p></li>
       <li><h3>Coordinamos el contacto</h3><p>Acordamos la forma y el momento de la demostración.</p></li>
     </ol>
     <span class="pendiente">Pendiente de confirmar: proceso comercial definitivo.</span>
@@ -374,6 +374,7 @@ footer.sitio ul{list-style:none;display:grid;gap:.3rem}
     <form class="form" id="form-contacto" novalidate aria-describedby="aviso-form">
       <p class="aviso-form" id="aviso-form">Los campos con * son obligatorios. Al enviar, se abrirá su programa de correo con el mensaje listo; la solicitud solo se envía cuando usted pulse «Enviar» allí.</p>
 
+      <div class="campo" style="position:absolute;left:-9999px" aria-hidden="true"><label for="web">No llenar</label><input id="web" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
       <div class="campo">
         <label for="nombre">Nombre *</label>
         <input id="nombre" name="nombre" type="text" autocomplete="name" required aria-describedby="e-nombre">
@@ -441,9 +442,14 @@ footer.sitio ul{list-style:none;display:grid;gap:.3rem}
 /* ===== Configuración de contacto (editar aquí) ===== */
 const CONFIG = {
   correoDestino: "marcelamartinez304@gmail.com",
-  // PENDIENTE: para recibir solicitudes sin depender del correo del visitante,
-  // conectar un servicio autorizado (p. ej. Formspree o CRM) y reemplazar el envío por mailto.
+  // Dirección del servicio que recibe las solicitudes (p. ej. Formspree: "https://formspree.io/f/xxxxxxxx").
+  // Si está vacía, el formulario usa el correo del visitante (mailto). Pegue aquí la dirección cuando la tenga.
+  endpoint: ""
 };
+if (CONFIG.endpoint) {
+  document.getElementById("aviso-form").textContent = "Los campos con * son obligatorios. Al enviar, su solicitud llegará directamente al equipo de Vendix.";
+  document.getElementById("paso-recepcion").textContent = "Su mensaje llega al equipo de Vendix a través del formulario.";
+}
 
 /* ===== Menú móvil ===== */
 const btn = document.getElementById("menu-btn");
@@ -468,6 +474,28 @@ function marcar(campo, errId, ok) {
   err.classList.toggle("visible", !ok);
   if (campo.type !== "checkbox") campo.setAttribute("aria-invalid", ok ? "false" : "true");
   return ok;
+}
+
+async function enviarAlServicio(f, cuerpo) {
+  const boton = form.querySelector("button[type=submit]");
+  boton.disabled = true;
+  estado.textContent = "Enviando su solicitud…";
+  try {
+    const res = await fetch(CONFIG.endpoint, {
+      method: "POST",
+      headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nombre: f.nombre.value.trim(), correo: f.correo.value.trim(), empresa: f.empresa.value.trim(),
+        telefono: f.telefono.value.trim(), motivo: f.motivo.value.trim(), _gotcha: f._gotcha.value,
+        mensaje: cuerpo
+      })
+    });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    estado.textContent = "Recibimos su solicitud. El equipo de Vendix se pondrá en contacto con usted.";
+    form.reset();
+  } catch (err) {
+    estado.textContent = "No pudimos enviar su solicitud. Intente de nuevo o escriba a " + CONFIG.correoDestino + " o llame al 321 739 8117.";
+  } finally { boton.disabled = false; }
 }
 
 form.addEventListener("submit", e => {
@@ -497,6 +525,7 @@ form.addEventListener("submit", e => {
     "Teléfono: " + (f.telefono.value.trim() || "No indicado"),
     "Motivo: " + (f.motivo.value.trim() || "No indicado")
   ].join("\n");
+  if (CONFIG.endpoint) { enviarAlServicio(f, cuerpo); return; }
   const url = "mailto:" + CONFIG.correoDestino +
     "?subject=" + encodeURIComponent("Solicitud de demostración Vendix") +
     "&body=" + encodeURIComponent(cuerpo);
