@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 64" role="img" aria-label="Vedix">
+  <g><path d="M14 4H40L56 20V54Q56 60 50 60H14Q8 60 8 54V10Q8 4 14 4Z" fill="#FFFFFF"/>
+  <path d="M40 4V16Q40 20 44 20H56Z" fill="#10243A" fill-opacity=".18"/>
+  <path d="M16 14H30M16 21H26" stroke="#10243A" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>
+  <path d="M19 32L29 46L46 26" fill="none" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" stroke="#2FD1AE"/>
+  <path d="M19 32L29 46" fill="none" stroke="#10243A" stroke-width="5.5" stroke-linecap="round"/></g>
+  <g transform="translate(86 17) scale(1.15)">
+  <g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 10L9 30L18 10"/>
+    <path d="M26 20H44A9 9 0 1 0 41.36 26.36"/>
+    <path d="M71 20A9 9 0 1 0 53 20A9 9 0 1 0 71 20M71 0V30"/>
+    <path d="M83 10V30"/>
+    <path d="M96 10L112 30M112 10L96 30"/>
+  </g>
+  <circle cx="83" cy="1.5" r="3.4" fill="#2FD1AE"/>
+  </g>
+</svg>
